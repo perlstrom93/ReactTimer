@@ -12,6 +12,13 @@ describe('Clock', ()=>{
     });
 });
 
+describe('render', ()=>{
+    it('should render cloack to output', ()=>{
+        var clock = TestUtils.renderIntoDocument(<Clock totalSeconds={62}/>),
+            $clock = $(clock);
+    });
+});
+
 describe('formatSeconds', ()=>{
     it('should format seconds', ()=>{
         var clock = TestUtils.renderIntoDocument(<Clock/>),
