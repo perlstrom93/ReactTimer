@@ -13,9 +13,12 @@ describe('Clock', ()=>{
 });
 
 describe('render', ()=>{
-    it('should render cloack to output', ()=>{
+    it('should render clock to output', ()=>{
         var clock = TestUtils.renderIntoDocument(<Clock totalSeconds={62}/>),
-            $clock = $(clock);
+            $el = $(ReactDOM.findDOMNode(clock)),
+            actualText = $el.find('.clock-text').text();
+
+        expect(actualText).toBe('01:02');
     });
 });
 
