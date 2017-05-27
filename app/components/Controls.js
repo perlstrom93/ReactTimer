@@ -6,6 +6,11 @@ var Controls = React.createClass({
         onStatusChange: React.PropTypes.func.isRequired
     },
 
+    // triggered when props are updated, and will recieve the new props
+    // componentWillReceiveProps: function(newProps){
+    //     console.log('will receive props', newProps.countdownStatus);
+    // },
+
     onStatusChange: function(newStatus){
         return ()=>{
             this.props.onStatusChange(newStatus);

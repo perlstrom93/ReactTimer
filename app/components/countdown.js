@@ -11,6 +11,7 @@ var Countdown = React.createClass({
         }
     },
 
+    // triggers when component is updated, either the props or the state with the previous state of the props and state passed in as the arguments
     componentDidUpdate: function(prevProps, prevState){
         if(this.state.countdownStatus !== prevState.countdownStatus){
             switch(this.state.countdownStatus){
@@ -29,12 +30,40 @@ var Countdown = React.createClass({
         }
     },
 
+    // triggers when component is about to be updated, either the props or the state with the new state of the props and state passed in as the arguments
+    // componentWillUpdate: function(nextProps, nextState){
+    //     console.log('will update');
+    // },
+    //
+    // // triggered right before a component is rendered
+    // componentWillMount: function(){
+    //     console.log('will mount');
+    // },
+    //
+    // // triggered right after a component has been rendered
+    // componentDidMount: function(){
+    //     console.log('did mount');
+    // },
+
+    // triggered right before a component is un-rendered
+    componentWillUnmount: function(){
+        console.log('unmounted');
+        clearInterval(this.timer);
+        this.timer = undefined;
+    },
+
     startTimer: function(){
         this.timer = setInterval(()=>{
             var newCount = this.state.count - 1;
             this.setState({
                 count: newCount >= 0 ? newCount : 0
             });
+
+            if (newCount === 0){
+                this.setState({
+                    countdownStatus: 'stopped'
+                });
+            }
         }, 1000)
     },
 
