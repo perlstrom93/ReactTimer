@@ -47,7 +47,6 @@ var Countdown = React.createClass({
 
     // triggered right before a component is un-rendered
     componentWillUnmount: function(){
-        console.log('unmounted');
         clearInterval(this.timer);
         this.timer = undefined;
     },
@@ -85,15 +84,15 @@ var Countdown = React.createClass({
 
         var renderControlArea = ()=>{
             if(countdownStatus !== 'stopped'){
-                return <Controls countdownStatus={countdownStatus} onStatusChange={this.handleStatusChange}/>;
+                return <Controls clockStatus={countdownStatus} onStatusChange={this.handleStatusChange}/>;
             } else {
                 return <CountdownForm onSetCountdown={this.handleSetCountdown}/>;
             }
-        }
+        };
 
         return(
             <div>
-                <h1 className="page-title">Countdown App</h1>
+                <h1 className="page-title">Countdown</h1>
                 <Clock totalSeconds={count}/>
                 {renderControlArea()}
             </div>
